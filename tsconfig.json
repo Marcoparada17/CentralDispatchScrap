@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",                 // Output compiled files in 'dist'
+    "rootDir": "./src",                 // Source files are inside 'src'
+    "module": "CommonJS",               // Ensures compatibility with Node.js
+    "target": "ES2017",                     // Use ES6 for better async/await support
+    "strict": true,                      // Enable strict type checking
+    "esModuleInterop": true,             // Enable compatibility with ES6 modules
+    "skipLibCheck": true,                // Speed up compilation
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true                // Prevent implicit 'any' types
+  },
+  "include": ["src"],                     // Only compile files inside 'src'
+  "exclude": ["node_modules", "dist"]     // Ignore 'node_modules' and 'dist'
+}

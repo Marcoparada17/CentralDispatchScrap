@@ -10,7 +10,7 @@ getData.get('/check', async (req: Request, res: Response) => {
  
     const result = await safeEvaluate<PriceCheckResponse>(async () => {
       const NavBffKey = localStorage.getItem('NavBffKey');
-      
+      console.log('Checking NavBffKey:', NavBffKey);
       const response = await fetch(
         'https://prod-price-check-app-bff.awsmanlog2.manheim.com/listing-prices',
         {
@@ -80,7 +80,7 @@ getData.get('/check', async (req: Request, res: Response) => {
           referrerPolicy: 'strict-origin-when-cross-origin',
         }
       );
-
+      console.log('Response:', response);
       if (!response.ok) {
         const textErr = await response.text();
         throw new Error(`HTTP ${response.status} - ${textErr}`);

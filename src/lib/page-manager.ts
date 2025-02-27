@@ -192,7 +192,9 @@ export async function safeEvaluate<T>(
   console.log(manager)
   try {
     const page = await manager.getActivePage();
+    console.log("Page, ", page)
     const result = await page.evaluate(pageFn, params);
+    console.log("Result, ", result)
     return { success: true, data: result };
   } catch (error: unknown) {
     // Proper type narrowing and error handling

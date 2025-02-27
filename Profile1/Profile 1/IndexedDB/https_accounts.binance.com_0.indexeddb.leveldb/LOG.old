@@ -1,0 +1,12 @@
+2025/01/06-22:52:00.957 a807 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_accounts.binance.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/06-22:52:00.957 a807 Recovering log #14
+2025/01/06-22:52:00.964 a807 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_accounts.binance.com_0.indexeddb.leveldb/000014.log 
+2025/01/06-22:52:13.114 b103 Level-0 table #19: started
+2025/01/06-22:52:13.125 b103 Level-0 table #19: 871367 bytes OK
+2025/01/06-22:52:13.127 b103 Delete type=0 #14
+2025/01/07-00:12:10.306 a807 Compacting 1@1 + 1@2 files
+2025/01/07-00:12:10.315 a807 Generated table #20@1: 122 keys, 14251 bytes
+2025/01/07-00:12:10.315 a807 Compacted 1@1 + 1@2 files => 14251 bytes
+2025/01/07-00:12:10.316 a807 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/01/07-00:12:10.316 a807 Delete type=2 #16
+2025/01/07-00:12:10.316 a807 Delete type=2 #19

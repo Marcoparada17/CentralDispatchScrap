@@ -1,0 +1,28 @@
+2025/01/24-18:19:12.688 a203 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_cloud.digitalocean.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/24-18:19:12.689 a203 Recovering log #6
+2025/01/24-18:19:12.689 a203 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_cloud.digitalocean.com_0.indexeddb.leveldb/000006.log 
+2025/01/24-18:19:12.700 b103 Level-0 table #11: started
+2025/01/24-18:19:12.707 b103 Level-0 table #11: 489 bytes OK
+2025/01/24-18:19:12.708 b103 Delete type=0 #6
+2025/01/24-18:19:12.708 a807 Manual compaction at level-0 from '\x00\x03\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x04\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/01/24-18:22:24.519 b103 Level-0 table #13: started
+2025/01/24-18:22:24.523 b103 Level-0 table #13: 526 bytes OK
+2025/01/24-18:22:24.527 b103 Delete type=0 #10
+2025/01/24-18:22:24.527 a807 Manual compaction at level-0 from '\x00\x04\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at '\x00\x04\x00\x00\x05' @ 130 : 1
+2025/01/24-18:22:24.527 a807 Compacting 1@0 + 1@1 files
+2025/01/24-18:22:24.528 a807 Generated table #14@0: 11 keys, 496 bytes
+2025/01/24-18:22:24.528 a807 Compacted 1@0 + 1@1 files => 496 bytes
+2025/01/24-18:22:24.529 a807 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/01/24-18:22:24.529 a807 Delete type=2 #13
+2025/01/24-18:22:24.530 a807 Manual compaction at level-0 from '\x00\x04\x00\x00\x05' @ 130 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/01/24-18:22:31.018 b103 Level-0 table #16: started
+2025/01/24-18:22:31.020 b103 Level-0 table #16: 531 bytes OK
+2025/01/24-18:22:31.037 b103 Delete type=0 #12
+2025/01/24-18:22:31.037 b103 Delete type=2 #11
+2025/01/24-18:22:31.037 a807 Manual compaction at level-0 from '\x00\x05\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at '\x00\x05\x00\x00\x05' @ 148 : 1
+2025/01/24-18:22:31.037 a807 Compacting 1@0 + 1@1 files
+2025/01/24-18:22:31.037 a807 Generated table #17@0: 15 keys, 533 bytes
+2025/01/24-18:22:31.037 a807 Compacted 1@0 + 1@1 files => 533 bytes
+2025/01/24-18:22:31.038 a807 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/01/24-18:22:31.038 a807 Delete type=2 #16
+2025/01/24-18:22:31.038 a807 Manual compaction at level-0 from '\x00\x05\x00\x00\x05' @ 148 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at (end)

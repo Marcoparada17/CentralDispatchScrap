@@ -1,0 +1,18 @@
+2025/02/18-15:12:47.982 a503 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_outlook.live.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/18-15:12:47.982 a503 Recovering log #44
+2025/02/18-15:12:47.982 a503 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_outlook.live.com_0.indexeddb.leveldb/000044.log 
+2025/02/18-15:12:47.990 a803 Manual compaction at level-0 from '\x00\x11\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x12\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/18-15:12:48.381 b103 Level-0 table #50: started
+2025/02/18-15:12:48.384 b103 Level-0 table #50: 785 bytes OK
+2025/02/18-15:12:48.386 b103 Delete type=0 #44
+2025/02/18-15:12:48.386 a803 Manual compaction at level-0 from '\x00\x12\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x13\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/18-15:12:48.386 b103 Level-0 table #52: started
+2025/02/18-15:12:48.387 b103 Level-0 table #52: 497 bytes OK
+2025/02/18-15:12:48.389 b103 Delete type=0 #49
+2025/02/18-15:12:48.389 a803 Manual compaction at level-0 from '\x00\x13\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at '\x00\x13\x00\x00\x05' @ 351 : 0
+2025/02/18-15:12:48.389 a803 Compacting 1@0 + 1@1 files
+2025/02/18-15:12:48.390 a803 Generated table #53@0: 4 keys, 239 bytes
+2025/02/18-15:12:48.390 a803 Compacted 1@0 + 1@1 files => 239 bytes
+2025/02/18-15:12:48.392 a803 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/02/18-15:12:48.392 a803 Delete type=2 #52
+2025/02/18-15:12:48.392 a803 Manual compaction at level-0 from '\x00\x13\x00\x00\x05' @ 351 : 0 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at (end)

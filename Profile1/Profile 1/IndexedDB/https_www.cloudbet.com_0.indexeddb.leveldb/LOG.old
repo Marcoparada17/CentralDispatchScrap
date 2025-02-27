@@ -1,0 +1,17 @@
+2025/02/07-15:26:00.568 a203 Creating DB /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.cloudbet.com_0.indexeddb.leveldb since it was missing.
+2025/02/07-15:26:00.571 a203 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.cloudbet.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/07-15:26:00.574 b103 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/07-15:26:04.380 b103 Level-0 table #5: started
+2025/02/07-15:26:04.385 b103 Level-0 table #5: 19446 bytes OK
+2025/02/07-15:26:04.387 b103 Delete type=0 #3
+2025/02/07-15:26:04.387 a807 Manual compaction at level-0 from '\x00\x06\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/07-15:26:04.821 b103 Level-0 table #7: started
+2025/02/07-15:26:04.830 b103 Level-0 table #7: 4727 bytes OK
+2025/02/07-15:26:04.834 b103 Delete type=0 #4
+2025/02/07-15:26:04.834 a807 Manual compaction at level-0 from '\x00\x08\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x09\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/07-15:26:27.591 a203 Compacting 1@1 + 1@2 files
+2025/02/07-15:26:27.595 a203 Generated table #8@1: 296 keys, 8527 bytes
+2025/02/07-15:26:27.595 a203 Compacted 1@1 + 1@2 files => 8527 bytes
+2025/02/07-15:26:27.599 a203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/02/07-15:26:27.599 a203 Delete type=2 #7
+2025/02/07-15:26:27.599 a203 Delete type=2 #5

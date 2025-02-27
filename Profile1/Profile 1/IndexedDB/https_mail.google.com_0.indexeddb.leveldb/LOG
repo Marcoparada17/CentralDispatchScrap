@@ -1,0 +1,33 @@
+2025/01/21-14:34:41.914 a203 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/21-14:34:41.914 a203 Recovering log #4
+2025/01/21-14:34:41.915 a203 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/000004.log 
+2025/01/21-14:41:48.565 a203 Level-0 table #8: started
+2025/01/21-14:41:48.589 a203 Level-0 table #8: 3081910 bytes OK
+2025/01/21-14:41:48.630 a203 Delete type=0 #4
+2025/01/22-11:41:28.996 a203 Compacting 1@1 + 1@2 files
+2025/01/22-11:41:29.013 a203 Generated table #9@1: 81 keys, 162730 bytes
+2025/01/22-11:41:29.013 a203 Compacted 1@1 + 1@2 files => 162730 bytes
+2025/01/22-11:41:29.021 a203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/01/22-11:41:29.022 a203 Delete type=2 #5
+2025/01/22-11:41:29.022 a203 Delete type=2 #8
+2025/01/23-22:51:03.924 a203 Level-0 table #11: started
+2025/01/23-22:51:03.951 a203 Level-0 table #11: 2939957 bytes OK
+2025/01/23-22:51:03.954 a203 Delete type=0 #7
+2025/01/23-22:51:12.487 a203 Compacting 1@1 + 1@2 files
+2025/01/23-22:51:12.501 a203 Generated table #12@1: 209 keys, 658872 bytes
+2025/01/23-22:51:12.501 a203 Compacted 1@1 + 1@2 files => 658872 bytes
+2025/01/23-22:51:12.503 a203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/01/25-16:55:35.574 a203 Level-0 table #14: started
+2025/01/25-16:55:35.599 a203 Level-0 table #14: 1860008 bytes OK
+2025/01/25-16:55:35.604 a203 Delete type=0 #10
+2025/01/25-16:55:35.604 a203 Delete type=2 #11
+2025/01/25-16:55:35.604 a203 Delete type=2 #9
+2025/01/25-16:55:35.608 a203 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/01/25-16:55:35.608 a203 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x01\x02\x01(\x00S\x00t\x00o\x00r\x00e\x00d\x00N\x00e\x00t\x00w\x00o\x00r\x00k\x00F\x00e\x00t\x00c\x00h\x00C\x00o\x00u\x00n\x00t\x00e\x00r\x00s\x00:\x00:\x00S\x00T\x00A\x00T\x00I\x00C\x00_\x00A\x00S\x00S\x00E\x00T' @ 13769 : 1
+2025/01/25-16:55:35.608 a203 Compacting 1@1 + 1@2 files
+2025/01/25-16:55:35.618 a203 Generated table #15@1: 124 keys, 313807 bytes
+2025/01/25-16:55:35.618 a203 Compacted 1@1 + 1@2 files => 313807 bytes
+2025/01/25-16:55:35.619 a203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/01/25-16:55:35.619 a203 Delete type=2 #14
+2025/01/25-16:55:35.619 a203 Delete type=2 #12
+2025/01/25-16:55:35.621 a203 Manual compaction at level-1 from '\x00\x01\x01\x02\x01(\x00S\x00t\x00o\x00r\x00e\x00d\x00N\x00e\x00t\x00w\x00o\x00r\x00k\x00F\x00e\x00t\x00c\x00h\x00C\x00o\x00u\x00n\x00t\x00e\x00r\x00s\x00:\x00:\x00S\x00T\x00A\x00T\x00I\x00C\x00_\x00A\x00S\x00S\x00E\x00T' @ 13769 : 1 .. (end); will stop at (end)

@@ -1,0 +1,22 @@
+2025/01/30-13:28:04.716 b103 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_aniwatchtv.to_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/30-13:28:04.717 b103 Recovering log #6
+2025/01/30-13:28:04.717 b103 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_aniwatchtv.to_0.indexeddb.leveldb/000006.log 
+2025/01/30-13:28:13.252 a203 Level-0 table #10: started
+2025/01/30-13:28:13.254 a203 Level-0 table #10: 209 bytes OK
+2025/01/30-13:28:13.261 a203 Delete type=0 #6
+2025/01/30-13:28:13.261 a203 Manual compaction at level-0 from (begin) .. (end); will stop at '\x00\x00\x00\x00\x06' @ 63734 : 1
+2025/01/30-13:28:13.261 a203 Compacting 1@0 + 1@1 files
+2025/01/30-13:28:13.265 a203 Generated table #11@0: 2 keys, 209 bytes
+2025/01/30-13:28:13.265 a203 Compacted 1@0 + 1@1 files => 209 bytes
+2025/01/30-13:28:13.267 a203 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/01/30-13:28:13.267 a203 Delete type=2 #7
+2025/01/30-13:28:13.267 a203 Delete type=2 #10
+2025/01/30-13:28:13.268 a203 Manual compaction at level-0 from '\x00\x00\x00\x00\x06' @ 63734 : 1 .. (end); will stop at (end)
+2025/01/30-13:28:13.268 a203 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x00\x00\x00\x06' @ 63734 : 1
+2025/01/30-13:28:13.268 a203 Compacting 1@1 + 1@2 files
+2025/01/30-13:28:13.277 a203 Generated table #12@1: 19324 keys, 572072 bytes
+2025/01/30-13:28:13.277 a203 Compacted 1@1 + 1@2 files => 572072 bytes
+2025/01/30-13:28:13.279 a203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/01/30-13:28:13.279 a203 Delete type=2 #5
+2025/01/30-13:28:13.279 a203 Delete type=2 #11
+2025/01/30-13:28:13.280 a203 Manual compaction at level-1 from '\x00\x00\x00\x00\x06' @ 63734 : 1 .. (end); will stop at (end)

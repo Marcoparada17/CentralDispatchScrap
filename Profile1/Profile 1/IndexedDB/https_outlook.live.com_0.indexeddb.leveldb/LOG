@@ -1,0 +1,5 @@
+2025/02/18-18:54:41.331 a803 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_outlook.live.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/18-18:54:41.334 a803 Recovering log #51
+2025/02/18-18:54:41.335 a803 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_outlook.live.com_0.indexeddb.leveldb/000051.log 
+2025/02/18-18:54:41.338 a803 Delete type=2 #50
+2025/02/18-18:54:41.343 b103 Manual compaction at level-0 from '\x00\x14\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x15\x00\x00\x00' @ 0 : 0; will stop at (end)

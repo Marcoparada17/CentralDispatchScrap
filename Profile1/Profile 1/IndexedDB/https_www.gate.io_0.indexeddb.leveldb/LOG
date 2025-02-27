@@ -1,0 +1,6 @@
+2025/01/31-14:42:25.806 b103 Creating DB /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.gate.io_0.indexeddb.leveldb since it was missing.
+2025/01/31-14:42:25.808 b103 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.gate.io_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/31-14:42:27.956 a807 Level-0 table #5: started
+2025/01/31-14:42:27.957 a807 Level-0 table #5: 1377 bytes OK
+2025/01/31-14:42:27.961 a807 Delete type=0 #3
+2025/01/31-14:42:27.962 a807 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

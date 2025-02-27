@@ -1,0 +1,15 @@
+2025/02/23-06:42:00.053 b103 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.tradingview.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/23-06:42:00.053 b103 Recovering log #15
+2025/02/23-06:42:00.053 b103 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.tradingview.com_0.indexeddb.leveldb/000015.log 
+2025/02/23-07:34:13.759 a503 Level-0 table #20: started
+2025/02/23-07:34:13.761 a503 Level-0 table #20: 4532 bytes OK
+2025/02/23-07:34:13.762 a503 Delete type=0 #15
+2025/02/23-07:34:13.764 a503 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/02/23-07:34:13.764 a503 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x02\x02 \x03\x00\x00\x00\x00\x00\x80R@\x00\x03\x00\x00\x00\x00\x00\xb0x@' @ 9919 : 1
+2025/02/23-07:34:13.764 a503 Compacting 1@1 + 1@2 files
+2025/02/23-07:34:13.766 a503 Generated table #21@1: 1729 keys, 41803 bytes
+2025/02/23-07:34:13.767 a503 Compacted 1@1 + 1@2 files => 41803 bytes
+2025/02/23-07:34:13.767 a503 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/02/23-07:34:13.768 a503 Delete type=2 #17
+2025/02/23-07:34:13.768 a503 Delete type=2 #20
+2025/02/23-07:34:13.768 a503 Manual compaction at level-1 from '\x00\x02\x02 \x03\x00\x00\x00\x00\x00\x80R@\x00\x03\x00\x00\x00\x00\x00\xb0x@' @ 9919 : 1 .. (end); will stop at (end)

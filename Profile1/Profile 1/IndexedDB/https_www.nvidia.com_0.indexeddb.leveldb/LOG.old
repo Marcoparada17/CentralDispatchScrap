@@ -1,0 +1,6 @@
+2025/01/19-16:36:21.693 a807 Creating DB /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.nvidia.com_0.indexeddb.leveldb since it was missing.
+2025/01/19-16:36:21.697 a807 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.nvidia.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/01/19-16:36:54.611 a203 Level-0 table #5: started
+2025/01/19-16:36:54.615 a203 Level-0 table #5: 819 bytes OK
+2025/01/19-16:36:54.617 a203 Delete type=0 #3
+2025/01/19-16:36:54.617 a203 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

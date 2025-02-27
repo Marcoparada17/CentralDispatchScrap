@@ -1,0 +1,6 @@
+2025/02/08-14:48:14.968 8307 Creating DB /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_m365.cloud.microsoft_0.indexeddb.leveldb since it was missing.
+2025/02/08-14:48:14.971 8307 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_m365.cloud.microsoft_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/08-14:54:16.145 a303 Level-0 table #5: started
+2025/02/08-14:54:16.148 a303 Level-0 table #5: 3324 bytes OK
+2025/02/08-14:54:16.150 a303 Delete type=0 #3
+2025/02/08-14:54:16.151 a303 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

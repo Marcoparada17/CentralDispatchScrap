@@ -1,0 +1,15 @@
+2025/02/19-23:22:18.137 a803 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/19-23:22:18.137 a803 Recovering log #11
+2025/02/19-23:22:18.141 a803 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/000011.log 
+2025/02/19-23:23:19.627 a503 Level-0 table #16: started
+2025/02/19-23:23:19.635 a503 Level-0 table #16: 856297 bytes OK
+2025/02/19-23:23:19.639 a503 Delete type=0 #11
+2025/02/19-23:23:19.640 a503 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/02/19-23:23:19.641 a503 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x0a\x02\x1f\x03\x00\xe0\xe6\xe6UKyB\x00\x03\x00\x00\x00\x00\x00\x80I@' @ 13243 : 1
+2025/02/19-23:23:19.641 a503 Compacting 1@1 + 1@2 files
+2025/02/19-23:23:19.645 a503 Generated table #17@1: 331 keys, 68166 bytes
+2025/02/19-23:23:19.645 a503 Compacted 1@1 + 1@2 files => 68166 bytes
+2025/02/19-23:23:19.646 a503 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/02/19-23:23:19.646 a503 Delete type=2 #16
+2025/02/19-23:23:19.646 a503 Delete type=2 #13
+2025/02/19-23:23:19.648 a503 Manual compaction at level-1 from '\x00\x0a\x02\x1f\x03\x00\xe0\xe6\xe6UKyB\x00\x03\x00\x00\x00\x00\x00\x80I@' @ 13243 : 1 .. (end); will stop at (end)

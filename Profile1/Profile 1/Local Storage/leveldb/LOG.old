@@ -1,0 +1,24 @@
+2025/02/26-07:25:34.678 2d03 Reusing MANIFEST /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Storage/leveldb/MANIFEST-000001
+2025/02/26-07:25:34.681 2d03 Recovering log #3058
+2025/02/26-07:25:34.682 2d03 Reusing old log /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Storage/leveldb/003058.log 
+2025/02/26-08:29:14.680 3c03 Level-0 table #3062: started
+2025/02/26-08:29:14.684 3c03 Level-0 table #3062: 34651 bytes OK
+2025/02/26-08:29:14.685 3c03 Delete type=0 #3058
+2025/02/26-08:29:14.688 3c03 Compacting 4@0 + 1@1 files
+2025/02/26-08:29:14.704 3c03 Generated table #3063@0: 2428 keys, 2364562 bytes
+2025/02/26-08:29:14.704 3c03 Compacted 4@0 + 1@1 files => 2364562 bytes
+2025/02/26-08:29:14.706 3c03 compacted to: files[ 0 2 1 0 0 0 0 ]
+2025/02/26-08:29:14.706 3c03 Delete type=2 #3051
+2025/02/26-08:29:14.706 3c03 Delete type=2 #3057
+2025/02/26-08:29:14.706 3c03 Delete type=2 #3054
+2025/02/26-08:29:14.706 3c03 Delete type=2 #3059
+2025/02/26-08:29:14.706 3c03 Delete type=2 #3062
+2025/02/26-11:41:14.806 3c03 Level-0 table #3065: started
+2025/02/26-11:41:14.807 3c03 Level-0 table #3065: 35350 bytes OK
+2025/02/26-11:41:14.808 3c03 Delete type=0 #3061
+2025/02/26-14:53:14.689 3c03 Level-0 table #3067: started
+2025/02/26-14:53:14.693 3c03 Level-0 table #3067: 35375 bytes OK
+2025/02/26-14:53:14.696 3c03 Delete type=0 #3064
+2025/02/26-17:49:14.763 3c03 Level-0 table #3069: started
+2025/02/26-17:49:14.766 3c03 Level-0 table #3069: 35614 bytes OK
+2025/02/26-17:49:14.767 3c03 Delete type=0 #3066

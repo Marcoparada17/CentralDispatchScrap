@@ -1,0 +1,15 @@
+2025/02/18-15:13:20.643 a803 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/WebStorage/23/IndexedDB/indexeddb.leveldb/MANIFEST-000001
+2025/02/18-15:13:20.644 a803 Recovering log #4
+2025/02/18-15:13:20.644 a803 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/WebStorage/23/IndexedDB/indexeddb.leveldb/000004.log 
+2025/02/18-15:13:34.867 a503 Level-0 table #8: started
+2025/02/18-15:13:34.869 a503 Level-0 table #8: 209 bytes OK
+2025/02/18-15:13:34.871 a503 Delete type=0 #4
+2025/02/18-15:13:34.872 a503 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/02/18-15:13:34.872 a503 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x00\x00\x00\x06' @ 12 : 1
+2025/02/18-15:13:34.872 a503 Compacting 1@1 + 1@2 files
+2025/02/18-15:13:34.873 a503 Generated table #9@1: 9 keys, 381 bytes
+2025/02/18-15:13:34.873 a503 Compacted 1@1 + 1@2 files => 381 bytes
+2025/02/18-15:13:34.875 a503 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/02/18-15:13:34.875 a503 Delete type=2 #5
+2025/02/18-15:13:34.875 a503 Delete type=2 #8
+2025/02/18-15:13:34.876 a503 Manual compaction at level-1 from '\x00\x00\x00\x00\x06' @ 12 : 1 .. (end); will stop at (end)

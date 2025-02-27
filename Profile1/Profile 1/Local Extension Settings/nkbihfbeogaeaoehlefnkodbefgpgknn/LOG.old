@@ -1,64 +1,11 @@
-2025/02/26-20:33:18.990 8107 Reusing MANIFEST /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Extension Settings/nkbihfbeogaeaoehlefnkodbefgpgknn/MANIFEST-000001
-2025/02/26-20:33:18.991 8107 Recovering log #24192
-2025/02/26-20:33:19.004 8107 Level-0 table #24196: started
-2025/02/26-20:33:19.034 8107 Level-0 table #24196: 11778714 bytes OK
-2025/02/26-20:33:19.043 8107 Delete type=0 #24192
-2025/02/26-20:33:26.347 8603 Level-0 table #24199: started
-2025/02/26-20:33:26.378 8603 Level-0 table #24199: 11741791 bytes OK
-2025/02/26-20:33:26.380 8603 Delete type=0 #24197
-2025/02/26-20:33:30.743 8603 Level-0 table #24201: started
-2025/02/26-20:33:30.777 8603 Level-0 table #24201: 11768412 bytes OK
-2025/02/26-20:33:30.779 8603 Delete type=0 #24198
-2025/02/26-20:33:32.588 8603 Level-0 table #24203: started
-2025/02/26-20:33:32.619 8603 Level-0 table #24203: 11768041 bytes OK
-2025/02/26-20:33:32.621 8603 Delete type=0 #24200
-2025/02/26-20:33:32.621 8603 Compacting 4@0 + 0@1 files
-2025/02/26-20:33:32.676 8603 Generated table #24204@0: 1 keys, 11768041 bytes
-2025/02/26-20:33:32.677 8603 Compacted 4@0 + 0@1 files => 11768041 bytes
-2025/02/26-20:33:32.678 8603 compacted to: files[ 0 1 2 0 0 0 0 ]
-2025/02/26-20:33:32.679 8603 Delete type=2 #24203
-2025/02/26-20:33:32.679 8603 Delete type=2 #24201
-2025/02/26-20:33:32.679 8603 Delete type=2 #24199
-2025/02/26-20:33:32.679 8603 Delete type=2 #24196
-2025/02/26-20:33:32.680 8603 Compacting 1@1 + 1@2 files
-2025/02/26-20:33:32.726 8603 Generated table #24205@1: 1 keys, 11768041 bytes
-2025/02/26-20:33:32.726 8603 Compacted 1@1 + 1@2 files => 11768041 bytes
-2025/02/26-20:33:32.727 8603 compacted to: files[ 0 0 2 0 0 0 0 ]
-2025/02/26-20:33:32.727 8603 Delete type=2 #24204
-2025/02/26-20:33:32.727 8603 Delete type=2 #24194
-2025/02/26-20:33:34.098 8603 Level-0 table #24207: started
-2025/02/26-20:33:34.125 8603 Level-0 table #24207: 11768584 bytes OK
-2025/02/26-20:33:34.127 8603 Delete type=0 #24202
-2025/02/26-20:33:34.127 8603 Compacting 1@1 + 1@2 files
-2025/02/26-20:33:34.166 8603 Generated table #24208@1: 1 keys, 11768584 bytes
-2025/02/26-20:33:34.167 8603 Compacted 1@1 + 1@2 files => 11768584 bytes
-2025/02/26-20:33:34.168 8603 compacted to: files[ 0 0 2 0 0 0 0 ]
-2025/02/26-20:33:34.168 8603 Delete type=2 #24205
-2025/02/26-20:33:34.168 8603 Delete type=2 #24207
-2025/02/26-20:43:26.317 8603 Level-0 table #24210: started
-2025/02/26-20:43:26.347 8603 Level-0 table #24210: 11768589 bytes OK
-2025/02/26-20:43:26.350 8603 Delete type=0 #24206
-2025/02/26-20:43:26.350 8107 Compacting 1@1 + 1@2 files
-2025/02/26-20:43:26.384 8107 Generated table #24211@1: 1 keys, 11768589 bytes
-2025/02/26-20:43:26.385 8107 Compacted 1@1 + 1@2 files => 11768589 bytes
-2025/02/26-20:43:26.385 8107 compacted to: files[ 0 0 2 0 0 0 0 ]
-2025/02/26-20:43:26.386 8107 Delete type=2 #24210
-2025/02/26-20:43:26.386 8107 Delete type=2 #24208
-2025/02/26-20:48:26.696 8603 Level-0 table #24213: started
-2025/02/26-20:48:26.725 8603 Level-0 table #24213: 11768590 bytes OK
-2025/02/26-20:48:26.727 8603 Delete type=0 #24209
-2025/02/26-20:48:26.728 8603 Compacting 1@1 + 1@2 files
-2025/02/26-20:48:26.770 8603 Generated table #24214@1: 1 keys, 11768590 bytes
-2025/02/26-20:48:26.770 8603 Compacted 1@1 + 1@2 files => 11768590 bytes
-2025/02/26-20:48:26.771 8603 compacted to: files[ 0 0 2 0 0 0 0 ]
-2025/02/26-20:48:26.771 8603 Delete type=2 #24211
-2025/02/26-20:48:26.771 8603 Delete type=2 #24213
-2025/02/26-20:48:37.381 8603 Level-0 table #24216: started
-2025/02/26-20:48:37.408 8603 Level-0 table #24216: 11768586 bytes OK
-2025/02/26-20:48:37.410 8603 Delete type=0 #24212
-2025/02/26-20:48:37.411 8603 Compacting 1@1 + 1@2 files
-2025/02/26-20:48:37.451 8603 Generated table #24217@1: 1 keys, 11768586 bytes
-2025/02/26-20:48:37.451 8603 Compacted 1@1 + 1@2 files => 11768586 bytes
-2025/02/26-20:48:37.453 8603 compacted to: files[ 0 0 2 0 0 0 0 ]
-2025/02/26-20:48:37.453 8603 Delete type=2 #24216
-2025/02/26-20:48:37.453 8603 Delete type=2 #24214
+2025/02/26-20:57:00.532 8107 Reusing MANIFEST /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Extension Settings/nkbihfbeogaeaoehlefnkodbefgpgknn/MANIFEST-000001
+2025/02/26-20:57:00.533 8107 Recovering log #24215
+2025/02/26-20:57:00.542 8107 Level-0 table #24219: started
+2025/02/26-20:57:00.571 8107 Level-0 table #24219: 11780384 bytes OK
+2025/02/26-20:57:00.574 8107 Delete type=0 #24215
+2025/02/26-20:57:05.911 a503 Level-0 table #24222: started
+2025/02/26-20:57:05.943 a503 Level-0 table #24222: 11750277 bytes OK
+2025/02/26-20:57:05.945 a503 Delete type=0 #24220
+2025/02/26-20:57:08.485 a503 Level-0 table #24224: started
+2025/02/26-20:57:08.515 a503 Level-0 table #24224: 11750221 bytes OK
+2025/02/26-20:57:08.517 a503 Delete type=0 #24221

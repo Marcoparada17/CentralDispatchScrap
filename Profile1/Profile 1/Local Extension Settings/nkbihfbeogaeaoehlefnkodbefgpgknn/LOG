@@ -1,11 +1,46 @@
-2025/02/26-20:57:00.532 8107 Reusing MANIFEST /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Extension Settings/nkbihfbeogaeaoehlefnkodbefgpgknn/MANIFEST-000001
-2025/02/26-20:57:00.533 8107 Recovering log #24215
-2025/02/26-20:57:00.542 8107 Level-0 table #24219: started
-2025/02/26-20:57:00.571 8107 Level-0 table #24219: 11780384 bytes OK
-2025/02/26-20:57:00.574 8107 Delete type=0 #24215
-2025/02/26-20:57:05.911 a503 Level-0 table #24222: started
-2025/02/26-20:57:05.943 a503 Level-0 table #24222: 11750277 bytes OK
-2025/02/26-20:57:05.945 a503 Delete type=0 #24220
-2025/02/26-20:57:08.485 a503 Level-0 table #24224: started
-2025/02/26-20:57:08.515 a503 Level-0 table #24224: 11750221 bytes OK
-2025/02/26-20:57:08.517 a503 Delete type=0 #24221
+2025/02/26-20:58:07.263 a807 Reusing MANIFEST /Users/devluis/Documents/Projects/central-dispatch-scrapper/Profile1/Profile 1/Local Extension Settings/nkbihfbeogaeaoehlefnkodbefgpgknn/MANIFEST-000001
+2025/02/26-20:58:07.264 a807 Recovering log #24223
+2025/02/26-20:58:07.273 a807 Level-0 table #24226: started
+2025/02/26-20:58:07.304 a807 Level-0 table #24226: 11775558 bytes OK
+2025/02/26-20:58:07.306 a807 Delete type=0 #24223
+2025/02/26-20:58:07.307 8503 Compacting 4@0 + 0@1 files
+2025/02/26-20:58:07.367 8503 Generated table #24228@0: 1 keys, 11775558 bytes
+2025/02/26-20:58:07.368 8503 Compacted 4@0 + 0@1 files => 11775558 bytes
+2025/02/26-20:58:07.369 8503 compacted to: files[ 0 1 2 0 0 0 0 ]
+2025/02/26-20:58:07.369 8503 Compacting 1@1 + 1@2 files
+2025/02/26-20:58:07.406 8503 Generated table #24229@1: 1 keys, 11775558 bytes
+2025/02/26-20:58:07.407 8503 Compacted 1@1 + 1@2 files => 11775558 bytes
+2025/02/26-20:58:07.407 8503 compacted to: files[ 0 0 2 0 0 0 0 ]
+2025/02/26-20:58:07.408 8503 Delete type=2 #24217
+2025/02/26-20:58:07.408 8503 Delete type=2 #24228
+2025/02/26-20:58:07.408 8503 Delete type=2 #24222
+2025/02/26-20:58:07.408 8503 Delete type=2 #24219
+2025/02/26-20:58:07.408 8503 Delete type=2 #24224
+2025/02/26-20:58:07.408 8503 Delete type=2 #24226
+2025/02/26-20:58:12.672 8503 Level-0 table #24231: started
+2025/02/26-20:58:12.706 8503 Level-0 table #24231: 11750293 bytes OK
+2025/02/26-20:58:12.709 8503 Delete type=0 #24227
+2025/02/26-20:58:12.709 8503 Compacting 1@1 + 1@2 files
+2025/02/26-20:58:12.744 8503 Generated table #24232@1: 1 keys, 11750293 bytes
+2025/02/26-20:58:12.744 8503 Compacted 1@1 + 1@2 files => 11750293 bytes
+2025/02/26-20:58:12.745 8503 compacted to: files[ 0 0 2 0 0 0 0 ]
+2025/02/26-20:58:12.745 8503 Delete type=2 #24229
+2025/02/26-20:58:12.745 8503 Delete type=2 #24231
+2025/02/26-20:58:15.238 8503 Level-0 table #24234: started
+2025/02/26-20:58:15.270 8503 Level-0 table #24234: 11750237 bytes OK
+2025/02/26-20:58:15.271 8503 Delete type=0 #24230
+2025/02/26-20:58:15.271 8503 Compacting 1@1 + 1@2 files
+2025/02/26-20:58:15.314 8503 Generated table #24235@1: 1 keys, 11750237 bytes
+2025/02/26-20:58:15.314 8503 Compacted 1@1 + 1@2 files => 11750237 bytes
+2025/02/26-20:58:15.315 8503 compacted to: files[ 0 0 2 0 0 0 0 ]
+2025/02/26-20:58:15.315 8503 Delete type=2 #24234
+2025/02/26-20:58:15.315 8503 Delete type=2 #24232
+2025/02/26-20:58:35.202 8503 Level-0 table #24237: started
+2025/02/26-20:58:35.230 8503 Level-0 table #24237: 11775572 bytes OK
+2025/02/26-20:58:35.232 8503 Delete type=0 #24233
+2025/02/26-20:58:35.233 8503 Compacting 1@1 + 1@2 files
+2025/02/26-20:58:35.275 8503 Generated table #24238@1: 1 keys, 11775572 bytes
+2025/02/26-20:58:35.275 8503 Compacted 1@1 + 1@2 files => 11775572 bytes
+2025/02/26-20:58:35.277 8503 compacted to: files[ 0 0 2 0 0 0 0 ]
+2025/02/26-20:58:35.277 8503 Delete type=2 #24237
+2025/02/26-20:58:35.277 8503 Delete type=2 #24235

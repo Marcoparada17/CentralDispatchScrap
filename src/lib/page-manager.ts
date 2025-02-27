@@ -187,7 +187,7 @@ export async function safeEvaluate<T>(
 ): Promise<PageEvaluationResult<T>> {
   const { retries = 3, delayMs = 2000 } = options;
   const manager = await ChromeManager.getInstance('https://app.centraldispatch.com/price-check');
-
+  console.log(manager)
   try {
     const page = await manager.getActivePage();
     const result = await page.evaluate(pageFn, params);

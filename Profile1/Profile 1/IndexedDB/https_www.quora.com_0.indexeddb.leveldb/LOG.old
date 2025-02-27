@@ -1,6 +1,0 @@
-2024/12/12-20:09:03.614 a603 Creating DB /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.quora.com_0.indexeddb.leveldb since it was missing.
-2024/12/12-20:09:03.619 a603 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_www.quora.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/12/12-20:09:10.432 8503 Level-0 table #5: started
-2024/12/12-20:09:10.432 8503 Level-0 table #5: 3494 bytes OK
-2024/12/12-20:09:10.433 8503 Delete type=0 #3
-2024/12/12-20:09:10.434 8503 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

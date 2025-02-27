@@ -1,7 +1,0 @@
-2025/01/03-14:17:59.309 a203 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_meet.google.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/01/03-14:17:59.310 a203 Recovering log #3
-2025/01/03-14:17:59.310 a203 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_meet.google.com_0.indexeddb.leveldb/000003.log 
-2025/01/03-15:46:23.401 a203 Level-0 table #5: started
-2025/01/03-15:46:23.404 a203 Level-0 table #5: 15854 bytes OK
-2025/01/03-15:46:23.406 a203 Delete type=0 #3
-2025/01/03-15:46:23.409 a203 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

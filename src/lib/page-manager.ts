@@ -47,7 +47,7 @@ const DEFAULT_CHROME_PARAMS: PlatformConfig = {
       args: [
         '--no-sandbox',
         '--user-data-dir=' + process.env.HOME + '/.config/google-chrome', // Use default Chrome path
-        '--profile-directory=Profile 1',
+        '--profile-directory=NewProfile',
         '--headless',
         '--disable-gpu',
         '--disable-dev-shm-usage',

@@ -1,6 +1,0 @@
-2024/12/17-11:19:27.714 8307 Reusing MANIFEST /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/12/17-11:19:27.715 8307 Recovering log #3
-2024/12/17-11:19:27.720 8307 Reusing old log /Users/devluis/Library/Application Support/Google/Chrome/Profile 1/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/000003.log 
-2024/12/17-11:19:36.578 8307 Level-0 table #5: started
-2024/12/17-11:19:36.603 8307 Level-0 table #5: 2651597 bytes OK
-2024/12/17-11:19:36.607 8307 Delete type=0 #3

@@ -47,7 +47,6 @@ const DEFAULT_CHROME_PARAMS: PlatformConfig = {
       args: [
         '--headless',
         '--disable-gpu',
-        '--no-sandbox',
         '--disable-dev-shm-usage',
         '--remote-debugging-port=9222',
         '--remote-allow-origins=*',

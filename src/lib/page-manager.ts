@@ -45,16 +45,15 @@ const DEFAULT_CHROME_PARAMS: PlatformConfig = {
     linux: {
       path: 'google-chrome',
       args: [
-
-       '--no-sandbox',    
-       '--user-data-dir=/home/ubuntu/central-dispatch-scrapper/Profile1', 
-       '--profile-directory=Profile 1',
+        '--no-sandbox',
+        '--user-data-dir=' + process.env.HOME + '/.config/google-chrome', // Use default Chrome path
+        '--profile-directory=Profile 1',
         '--headless',
         '--disable-gpu',
         '--disable-dev-shm-usage',
         '--remote-debugging-port=9222',
         '--remote-allow-origins=*',
-        '-no-first-run',
+        '--no-first-run',
         '--no-default-browser-check',
       ],
       postSpawnDelay: 5000

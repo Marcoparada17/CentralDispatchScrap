@@ -1,5 +1,20 @@
 import ChromeManager from './page-manager';
 import readlineSync from 'readline-sync';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
+const { USERNAME, PASSWORD } = process.env;
+
+// Exit if USERNAME or PASSWORD is not set
+if (!USERNAME || !PASSWORD) {
+  console.error("❌ Error: USERNAME and/or PASSWORD environment variables are not set in the .env file.");
+  process.exit(1);
+}
+
+const usernameEnv: string = USERNAME;
+const passwordEnv: string = PASSWORD;
 
 async function login() {
   console.log("🚀 Starting ChromeManager...");
@@ -19,7 +34,7 @@ async function login() {
       await chromeManager.close();
       return;
     }
-    await usernameField.type('devopslp');
+    await usernameField.type(usernameEnv);
     console.log("✅ Username entered.");
 
     // Ensure the Password field exists before typing
@@ -29,7 +44,7 @@ async function login() {
       await chromeManager.close();
       return;
     }
-    await passwordField.type('Kiwi.154');
+    await passwordField.type(passwordEnv);
     console.log("✅ Password entered.");
 
     // Ensure the "Remember Login" checkbox exists before clicking

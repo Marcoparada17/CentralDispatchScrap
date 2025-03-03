@@ -30,14 +30,14 @@ const DEFAULT_CHROME_PARAMS: PlatformConfig = {
     darwin: {
       path: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
       args: [
-        '--headless',
+        // '--headless',
         '--disable-gpu',
         '--disable-dev-shm-usage',
         '--remote-debugging-port=9222',
         '--remote-allow-origins=*',
-        '-no-first-run',
+        '--no-first-run',
         '--no-default-browser-check',
-        '--user-data-dir=' + path.resolve(__dirname, '../../Profile1'),
+        '--user-data-dir=/Users/devluis/Library/Application Support/Google/Chrome',
         '--profile-directory=Profile 1'
       ],
       postSpawnDelay: 5000
@@ -188,10 +188,8 @@ export async function safeEvaluate<T>(
 ): Promise<PageEvaluationResult<T>> {
   const { retries = 3, delayMs = 2000 } = options;
   const manager = await ChromeManager.getInstance('https://app.centraldispatch.com/price-check');
-  console.log(manager)
   try {
     const page = await manager.getActivePage();
-    console.log("Page, ", page)
     const result = await page.evaluate(pageFn, params);
     console.log("Result, ", result)
     return { success: true, data: result };

@@ -189,7 +189,7 @@ getData.post('/fetch-vehicle-type', async (req: Request, res: Response) => {
         url.searchParams.append('year', year);
         url.searchParams.append('make', make);
         url.searchParams.append('model', model);
-        
+        console.log(url)
         const response = await fetch(url.toString(), {
           method: 'GET',
           headers: {

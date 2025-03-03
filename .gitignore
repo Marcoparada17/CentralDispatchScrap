@@ -3,3 +3,5 @@ central-dispatch-key.pem
 package-lock.json
 /dist
 /Profile1
+.env
+.DS_Store

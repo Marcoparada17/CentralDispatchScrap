@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import getDataRoute from './router/get-data';
+import shopifyRoute from './router/shopify';
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 // Mount our "Authentication" router at /auth
 app.use('/scrapper', getDataRoute);
+app.use('/shopify', shopifyRoute);
 
 app.get("/", async (req, res) => {
     try {

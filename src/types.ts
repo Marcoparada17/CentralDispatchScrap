@@ -81,3 +81,29 @@ export interface VehicleTypeResponse {
     models: string[];
     vehicleType: string;
 }
+
+export interface PricingData {
+    basePrice: string;
+    adjustment: string;
+    finalPrice: string;
+    pickupDate: string;
+    phoneNumber: string;
+    make: string;
+    model: string;
+    year: string;
+    isOperable: boolean;
+    nombre: string;
+    email: string;
+  }
+  
+  export interface RegisterRequestBody {
+    email: string;
+    firstName: string;
+    lastName: string;
+    pricingData: PricingData;
+  }
+  
+  export interface TriggerQuoteRequestBody {
+    email: string;
+    pricingData: PricingData;
+  }

@@ -288,60 +288,64 @@ export async function updateDraftOrderMetafields(
 }
 
 export async function createOrderGraphQL(pricingData: Record<string, any>): Promise<any> {
-  // Build the order input with the customer's email and line items
-  const input = {
-    email: pricingData.email,
-    lineItems: [
-      {
-        title: `Transport ${pricingData.model}`,
-        quantity: 1,
-        originalUnitPrice: pricingData.finalPrice
-      }
-    ],
-    tags: "transport_order"
-  };
-
-  const mutation = `
-    mutation orderCreate($input: OrderInput!) {
-      orderCreate(input: $input) {
-        order {
-          id
-          name
-          orderNumber
-          tags
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
+  // Create the order using REST API
+  const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/orders.json`;
   const headers = {
     "Content-Type": "application/json",
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
-  const variables = { input };
 
-  const response = await axios.post(url, { query: mutation, variables }, { headers });
-  console.log("Order create response:", response.data);
+  const orderData = {
+    order: {
+      email: pricingData.email,
+      line_items: [
+        {
+          title: `Transport ${pricingData.model}`,
+          quantity: 1,
+          price: pricingData.finalPrice.toString(),
+          taxable: true
+        }
+      ],
+      tags: ["transport_order"],
+      note: `Transport order for ${pricingData.model}`,
+      financial_status: "pending"
+    }
+  };
 
-  if (!response.data.data || !response.data.data.orderCreate) {
-    throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+  try {
+    const response = await axios.post(url, orderData, { headers });
+    console.log("Order create response:", response.data);
+    
+    // After creating the order, update its metafields
+    if (response.data.order && response.data.order.id) {
+      try {
+        const metafieldsResult = await updateOrderMetafields(
+          `gid://shopify/Order/${response.data.order.id}`,
+          pricingData
+        );
+        return {
+          order: response.data.order,
+          metafields: metafieldsResult.metafields
+        };
+      } catch (metafieldError: any) {
+        console.error("Error updating order metafields:", metafieldError);
+        // Return the order even if metafields update fails
+        return {
+          order: response.data.order,
+          metafieldsError: metafieldError.message
+        };
+      }
+    }
+    
+    return response.data.order;
+  } catch (error: any) {
+    console.error("Error creating order:", error.response?.data || error.message);
+    throw new Error(JSON.stringify(error.response?.data?.errors || error.message));
   }
-
-  const { order, userErrors } = response.data.data.orderCreate;
-  if (userErrors && userErrors.length) {
-    throw new Error(JSON.stringify(userErrors));
-  }
-
-  return order;
 }
 
 export async function updateOrderMetafields(
-  orderGlobalId: string,
+  orderGlobalId: string | number,
   pricingData: Record<string, any>
 ): Promise<any> {
   const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
@@ -351,9 +355,15 @@ export async function updateOrderMetafields(
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
 
+  // Ensure the orderGlobalId is in the correct format
+  const idString = String(orderGlobalId);
+  const formattedGlobalId = idString.startsWith('gid://') 
+    ? idString 
+    : `gid://shopify/Order/${idString}`;
+
   // Convert the pricingData into an array of MetafieldsSetInput objects
   const metafields = Object.entries(pricingData).map(([key, value]) => ({
-    ownerId: orderGlobalId,
+    ownerId: formattedGlobalId,
     namespace: "pricing",
     key: key,
     value: String(value),

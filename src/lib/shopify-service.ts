@@ -286,3 +286,104 @@ export async function updateDraftOrderMetafields(
   
   return response.data.data.metafieldsSet;
 }
+
+export async function createOrderGraphQL(pricingData: Record<string, any>): Promise<any> {
+  // Build the order input with the customer's email and line items
+  const input = {
+    email: pricingData.email,
+    lineItems: [
+      {
+        title: `Transport ${pricingData.model}`,
+        quantity: 1,
+        originalUnitPrice: pricingData.finalPrice
+      }
+    ],
+    tags: "transport_order"
+  };
+
+  const mutation = `
+    mutation orderCreate($input: OrderInput!) {
+      orderCreate(input: $input) {
+        order {
+          id
+          name
+          orderNumber
+          tags
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
+  };
+  const variables = { input };
+
+  const response = await axios.post(url, { query: mutation, variables }, { headers });
+  console.log("Order create response:", response.data);
+
+  if (!response.data.data || !response.data.data.orderCreate) {
+    throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+  }
+
+  const { order, userErrors } = response.data.data.orderCreate;
+  if (userErrors && userErrors.length) {
+    throw new Error(JSON.stringify(userErrors));
+  }
+
+  return order;
+}
+
+export async function updateOrderMetafields(
+  orderGlobalId: string,
+  pricingData: Record<string, any>
+): Promise<any> {
+  const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
+  const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
+  };
+
+  // Convert the pricingData into an array of MetafieldsSetInput objects
+  const metafields = Object.entries(pricingData).map(([key, value]) => ({
+    ownerId: orderGlobalId,
+    namespace: "pricing",
+    key: key,
+    value: String(value),
+    type: "single_line_text_field"
+  }));
+
+  const mutation = `
+    mutation metafieldsSet($input: [MetafieldsSetInput!]!) {
+      metafieldsSet(metafields: $input) {
+        metafields {
+          id
+          namespace
+          key
+          value
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+  const variables = { input: metafields };
+
+  const response = await axios.post(url, { query: mutation, variables }, { headers });
+  console.log("Update order metafields response:", response.data);
+
+  if (!response.data.data || !response.data.data.metafieldsSet) {
+    throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+  }
+  
+  return response.data.data.metafieldsSet;
+}

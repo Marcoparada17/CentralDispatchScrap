@@ -4,10 +4,12 @@ import { RegisterRequestBody, TriggerQuoteRequestBody } from '../types';
 import { 
   createCustomerGraphQL, 
   createDraftOrderGraphQL, 
+  createOrderGraphQL,
   findCustomerByEmail,
   triggerSendQuote,
   updateCustomerMetafields,
   updateDraftOrderMetafields, 
+  updateOrderMetafields,
 } from '../lib/shopify-service';
 dotenv.config();
 
@@ -97,6 +99,25 @@ router.post('/triggerQuote', async (req: Request<{}, {}, TriggerQuoteRequestBody
   }
 });
 
+router.post('/createOrder', async (req: Request<{}, {}>, res: Response) => {
+  const { pricingData } = req.body;
 
+  try {
+    // 1. Create a new order
+    const order = await createOrderGraphQL(pricingData);
+    
+    // 2. Update the order's metafields with pricingData
+    const metafieldsResult = await updateOrderMetafields(order.id, pricingData);
+    
+    res.status(200).json({
+      message: "Order created and metafields updated successfully.",
+      order,
+      metafields: metafieldsResult.metafields,
+    });
+  } catch (error: any) {
+    console.error("Error in /createOrder:", error.response?.data || error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 export default router;

@@ -55,9 +55,17 @@ router.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: 
 
 
 router.post('/registerOrder', async (req: Request<{}, {}>, res: Response) => {
-  const { pricingData } = req.body;
+  const { email, model, finalPrice, customerLocale } = req.body;
 
   try {
+    // Create pricingData object from the request body
+    const pricingData = {
+      email,
+      model,
+      finalPrice,
+      customerLocale: customerLocale === 'es' ? 'es' : 'en'
+    };
+
     // 1. Create a new draft order
     const draftOrder = await createDraftOrderGraphQL(pricingData);
     
@@ -100,9 +108,17 @@ router.post('/triggerQuote', async (req: Request<{}, {}, TriggerQuoteRequestBody
 });
 
 router.post('/createOrder', async (req: Request<{}, {}>, res: Response) => {
-  const { pricingData } = req.body;
+  const { email, model, finalPrice, customerLocale } = req.body;
 
   try {
+    // Create pricingData object from the request body
+    const pricingData = {
+      email,
+      model,
+      finalPrice,
+      customerLocale: customerLocale === 'es' ? 'es' : 'en'
+    };
+
     // 1. Create a new order
     const order = await createOrderGraphQL(pricingData);
     

@@ -187,17 +187,16 @@ export async function updateCustomerMetafields(
 export async function createDraftOrderGraphQL(pricingData: Record<string, any>): Promise<any> {
   // Build a minimal DraftOrderInput. We include the customer's email,
   // a dummy line item, and a tag to identify the order as a draft quote.
-  const input = {
+  const draftOrderInput = {
     email: pricingData.email,
     lineItems: [
       {
         title: `Transport ${pricingData.model}`,
         quantity: 1,
-        // Use the final price as the unit price for the dummy item.
-        originalUnitPrice: pricingData.finalPrice
-      }
+        originalUnitPrice: pricingData.finalPrice,
+      },
     ],
-    tags: "draft_quote"
+    tags: "draft_quote",
   };
 
   const mutation = `
@@ -222,7 +221,7 @@ export async function createDraftOrderGraphQL(pricingData: Record<string, any>):
     "Content-Type": "application/json",
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
-  const variables = { input };
+  const variables = { input: draftOrderInput };
 
   const response = await axios.post(url, { query: mutation, variables }, { headers });
   console.log("Draft order create response:", response.data);
@@ -288,59 +287,173 @@ export async function updateDraftOrderMetafields(
 }
 
 export async function createOrderGraphQL(pricingData: Record<string, any>): Promise<any> {
-  // Create the order using REST API
-  const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/orders.json`;
   const headers = {
     "Content-Type": "application/json",
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
 
-  const orderData = {
-    order: {
-      email: pricingData.email,
-      line_items: [
-        {
-          title: `Transport ${pricingData.model}`,
-          quantity: 1,
-          price: pricingData.finalPrice.toString(),
-          taxable: true
-        }
-      ],
-      tags: ["transport_order"],
-      note: `Transport order for ${pricingData.model}`,
-      financial_status: "pending"
-    }
-  };
-
   try {
-    const response = await axios.post(url, orderData, { headers });
-    console.log("Order create response:", response.data);
-    
-    // After creating the order, update its metafields
-    if (response.data.order && response.data.order.id) {
-      try {
-        const metafieldsResult = await updateOrderMetafields(
-          `gid://shopify/Order/${response.data.order.id}`,
-          pricingData
-        );
-        return {
-          order: response.data.order,
-          metafields: metafieldsResult.metafields
+    // First, try to find and update the customer using GraphQL
+    const graphqlUrl = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
+    const findCustomerQuery = `
+      query findCustomer($query: String!) {
+        customers(first: 1, query: $query) {
+          edges {
+            node {
+              id
+              email
+              acceptsMarketing
+              firstName
+              lastName
+              locale
+            }
+          }
+        }
+      }
+    `;
+
+    const findCustomerVariables = {
+      query: `email:${pricingData.email}`
+    };
+
+    const customerResponse = await axios.post(
+      graphqlUrl,
+      { query: findCustomerQuery, variables: findCustomerVariables },
+      { headers }
+    );
+
+    let customerLocale = pricingData.customerLocale || "en";
+    let customerId = null;
+
+    if (customerResponse.data.data?.customers?.edges?.length > 0) {
+      const customer = customerResponse.data.data.customers.edges[0].node;
+      customerId = customer.id;
+      
+      // Update customer's locale if it's different
+      if (customer.locale !== customerLocale) {
+        const updateCustomerMutation = `
+          mutation customerUpdate($input: CustomerInput!) {
+            customerUpdate(input: $input) {
+              customer {
+                id
+                locale
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        const updateVariables = {
+          input: {
+            id: customerId,
+            locale: customerLocale
+          }
         };
-      } catch (metafieldError: any) {
-        console.error("Error updating order metafields:", metafieldError);
-        // Return the order even if metafields update fails
-        return {
-          order: response.data.order,
-          metafieldsError: metafieldError.message
-        };
+
+        const updateResult = await axios.post(graphqlUrl, { query: updateCustomerMutation, variables: updateVariables }, { headers });
+        console.log('Customer update response:', updateResult.data);
+
+        // Wait a moment for the customer update to propagate
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    } else {
+      // If customer doesn't exist, create a new one with the correct locale
+      const createCustomerMutation = `
+        mutation customerCreate($input: CustomerInput!) {
+          customerCreate(input: $input) {
+            customer {
+              id
+              email
+              locale
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const createVariables = {
+        input: {
+          email: pricingData.email,
+          locale: customerLocale,
+          acceptsMarketing: false
+        }
+      };
+
+      const createResponse = await axios.post(graphqlUrl, { query: createCustomerMutation, variables: createVariables }, { headers });
+      console.log('Customer create response:', createResponse.data);
+      
+      if (createResponse.data.data?.customerCreate?.customer) {
+        customerId = createResponse.data.data.customerCreate.customer.id;
+        // Wait a moment for the customer creation to propagate
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
-    
-    return response.data.order;
+
+    // Create the order using REST API
+    const restUrl = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/orders.json`;
+    const orderData = {
+      order: {
+        email: pricingData.email,
+        customer_id: customerId ? parseInt(customerId.split('/').pop() || '0') : null,
+        line_items: [
+          {
+            title: `Transport ${pricingData.model}`,
+            quantity: 1,
+            price: pricingData.finalPrice.toString(),
+            taxable: true
+          }
+        ],
+        tags: ["transport_order"],
+        note: `Transport order for ${pricingData.model}`,
+        financial_status: "pending",
+        metafields: [
+          {
+            namespace: "email",
+            key: "locale",
+            value: customerLocale,
+            type: "single_line_text_field"
+          }
+        ]
+      }
+    };
+
+    const response = await axios.post(restUrl, orderData, { headers });
+    console.log("Order create response:", response.data);
+
+    if (!response.data.order) {
+      throw new Error("Failed to create order");
+    }
+
+    // After creating the order, update its metafields with all pricing data
+    try {
+      const metafieldsResult = await updateOrderMetafields(
+        `gid://shopify/Order/${response.data.order.id}`,
+        {
+          ...pricingData,
+          customerLocale: customerLocale,
+          email_locale: customerLocale // Adding a dedicated field for email localization
+        }
+      );
+      return {
+        order: response.data.order,
+        metafields: metafieldsResult.metafields
+      };
+    } catch (metafieldError) {
+      console.error("Error updating metafields:", metafieldError);
+      return {
+        order: response.data.order,
+        metafields: null
+      };
+    }
   } catch (error: any) {
-    console.error("Error creating order:", error.response?.data || error.message);
-    throw new Error(JSON.stringify(error.response?.data?.errors || error.message));
+    console.error("Error in createOrderGraphQL:", error.response?.data || error.message);
+    throw error;
   }
 }
 
@@ -389,7 +502,7 @@ export async function updateOrderMetafields(
   const variables = { input: metafields };
 
   const response = await axios.post(url, { query: mutation, variables }, { headers });
-  console.log("Update order metafields response:", response.data);
+  console.log("Update order metafields response:", JSON.stringify(response.data, null, 2));
 
   if (!response.data.data || !response.data.data.metafieldsSet) {
     throw new Error(JSON.stringify(response.data.errors || "Unknown error"));

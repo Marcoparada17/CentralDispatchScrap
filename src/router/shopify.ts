@@ -66,17 +66,13 @@ router.post('/registerOrder', async (req: Request<{}, {}>, res: Response) => {
       customerLocale: customerLocale === 'es' ? 'es' : 'en'
     };
 
-    // 1. Create a new draft order
-    const draftOrder = await createDraftOrderGraphQL(pricingData);
-    
-    // 2. Update the draft order's metafields with pricingData.
-    // The draftOrder.id should already be in global format.
-    const metafieldsResult = await updateDraftOrderMetafields(draftOrder.id, pricingData);
+    // Create a new draft order and update its metafields
+    const result = await createDraftOrderGraphQL(pricingData);
     
     res.status(200).json({
       message: "Draft order created and metafields updated successfully.",
-      draftOrder,
-      metafields: metafieldsResult.metafields,
+      draftOrder: result.draftOrder,
+      metafields: result.metafields,
     });
   } catch (error: any) {
     console.error("Error in /registerOrder:", error.response?.data || error.message);

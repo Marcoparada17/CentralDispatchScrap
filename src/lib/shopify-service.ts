@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+interface PricingData {
+  email: string;
+  model: string;
+  finalPrice: number;
+  customerLocale: string;
+  email_locale: string;
+}
+
 export async function findCustomerByEmail(email: string): Promise<any[]> {
   try {
     const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
@@ -185,61 +193,188 @@ export async function updateCustomerMetafields(
 }
 
 export async function createDraftOrderGraphQL(pricingData: Record<string, any>): Promise<any> {
-  // Build a minimal DraftOrderInput. We include the customer's email,
-  // a dummy line item, and a tag to identify the order as a draft quote.
-  const draftOrderInput = {
-    email: pricingData.email,
-    lineItems: [
-      {
-        title: `Transport ${pricingData.model}`,
-        quantity: 1,
-        originalUnitPrice: pricingData.finalPrice,
-      },
-    ],
-    tags: "draft_quote",
-  };
-
-  const mutation = `
-    mutation draftOrderCreate($input: DraftOrderInput!) {
-      draftOrderCreate(input: $input) {
-        draftOrder {
-          id
-          name
-          invoiceUrl
-          tags
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
   const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
   const headers = {
     "Content-Type": "application/json",
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
-  const variables = { input: draftOrderInput };
 
-  const response = await axios.post(url, { query: mutation, variables }, { headers });
-  console.log("Draft order create response:", response.data);
+  // First, try to find the customer
+  const findCustomerQuery = `
+    query findCustomer($query: String!) {
+      customers(first: 1, query: $query) {
+        edges {
+          node {
+            id
+            email
+            acceptsMarketing
+            firstName
+            lastName
+            locale
+          }
+        }
+      }
+    }
+  `;
 
-  if (!response.data.data || !response.data.data.draftOrderCreate) {
-    throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+  const findCustomerVariables = {
+    query: `email:${pricingData.email}`
+  };
+
+  try {
+    // Find the customer
+    const customerResponse = await axios.post(
+      url,
+      { query: findCustomerQuery, variables: findCustomerVariables },
+      { headers }
+    );
+
+    let customerLocale = pricingData.customerLocale || "en";
+    let customerId = null;
+
+    if (customerResponse.data.data?.customers?.edges?.length > 0) {
+      const customer = customerResponse.data.data.customers.edges[0].node;
+      customerId = customer.id;
+      
+      // Update customer's locale if it's different
+      if (customer.locale !== customerLocale) {
+        const updateCustomerMutation = `
+          mutation customerUpdate($input: CustomerInput!) {
+            customerUpdate(input: $input) {
+              customer {
+                id
+                locale
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        const updateVariables = {
+          input: {
+            id: customerId,
+            locale: customerLocale
+          }
+        };
+
+        await axios.post(url, { query: updateCustomerMutation, variables: updateVariables }, { headers });
+      }
+    }
+
+    // Create the draft order using GraphQL API
+    const createDraftOrderMutation = `
+      mutation draftOrderCreate($input: DraftOrderInput!) {
+        draftOrderCreate(input: $input) {
+          draftOrder {
+            id
+            name
+            email
+            customer {
+              id
+              email
+              locale
+            }
+            lineItems(first: 1) {
+              edges {
+                node {
+                  title
+                  quantity
+                  originalUnitPrice
+                }
+              }
+            }
+            tags
+            invoiceUrl
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }
+    `;
+
+    const draftOrderInput = {
+      email: pricingData.email,
+      customerId: customerId,
+      lineItems: [
+        {
+          title: `Transport ${pricingData.model}`,
+          quantity: 1,
+          originalUnitPrice: pricingData.finalPrice.toString(),
+          taxable: true
+        }
+      ],
+      tags: ["draft_quote"],
+      metafields: [
+        {
+          namespace: "email",
+          key: "locale",
+          value: customerLocale,
+          type: "single_line_text_field"
+        }
+      ]
+    };
+
+    const response = await axios.post(
+      url,
+      { query: createDraftOrderMutation, variables: { input: draftOrderInput } },
+      { headers }
+    );
+
+    console.log("Draft order create response:", JSON.stringify(response.data, null, 2));
+
+    if (!response.data.data?.draftOrderCreate?.draftOrder) {
+      throw new Error(JSON.stringify(response.data.errors || "Failed to create draft order"));
+    }
+    
+    // Check for user errors in the draft order creation
+    if (response.data.data.draftOrderCreate.userErrors && 
+        response.data.data.draftOrderCreate.userErrors.length > 0) {
+      console.error("Errors creating draft order:", response.data.data.draftOrderCreate.userErrors);
+      throw new Error(`Draft order creation errors: ${JSON.stringify(response.data.data.draftOrderCreate.userErrors)}`);
+    }
+
+    // After creating the draft order, update its metafields
+    try {
+      const draftOrder = response.data.data.draftOrderCreate.draftOrder;
+      // Add slight delay before setting metafields to ensure draft order is fully processed
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      const metafieldsResult = await updateDraftOrderMetafields(
+        draftOrder.id,
+        {
+          ...pricingData,
+          customerLocale: customerLocale,
+          email_locale: customerLocale // Adding a dedicated field for email localization
+        }
+      );
+      
+      console.log("Successfully updated draft order metafields");
+      console.log("Metafields result:", JSON.stringify(metafieldsResult, null, 2));
+      
+      return {
+        draftOrder: draftOrder,
+        metafields: metafieldsResult.metafields
+      };
+    } catch (metafieldError) {
+      console.error("Error updating metafields:", metafieldError);
+      return {
+        draftOrder: response.data.data.draftOrderCreate.draftOrder,
+        metafields: null
+      };
+    }
+  } catch (error: any) {
+    console.error("Error in createDraftOrderGraphQL:", error.response?.data || error.message);
+    throw error;
   }
-
-  const { draftOrder, userErrors } = response.data.data.draftOrderCreate;
-  if (userErrors && userErrors.length) {
-    throw new Error(JSON.stringify(userErrors));
-  }
-
-  return draftOrder;
 }
 
 export async function updateDraftOrderMetafields(
-  draftOrderGlobalId: string,
+  draftOrderId: string,
   pricingData: Record<string, any>
 ): Promise<any> {
   const url = `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json`;
@@ -249,14 +384,40 @@ export async function updateDraftOrderMetafields(
     "X-Shopify-Access-Token": process.env.SHOPIFY_ACCESS_TOKEN as string,
   };
 
-  // Convert your pricingData into an array of MetafieldsSetInput objects.
-  const metafields = Object.entries(pricingData).map(([key, value]) => ({
-    ownerId: draftOrderGlobalId,
-    namespace: "pricing",
-    key: key,
-    value: String(value),
-    type: "single_line_text_field" // Change type if needed
-  }));
+  // Ensure the draftOrderId is in the correct format
+  const idString = String(draftOrderId);
+  const formattedDraftOrderId = idString.startsWith('gid://') 
+    ? idString 
+    : `gid://shopify/DraftOrder/${idString.replace('gid://shopify/DraftOrder/', '')}`;
+
+  console.log(`Setting metafields for draft order ID: ${formattedDraftOrderId}`);
+  console.log('Pricing data:', JSON.stringify(pricingData, null, 2));
+
+  // Convert the pricingData into an array of MetafieldsSetInput objects
+  const metafields = Object.entries(pricingData).map(([key, value]) => {
+    // Determine the appropriate metafield type based on the value
+    let type = "single_line_text_field";
+    let processedValue = String(value);
+    
+    if (typeof value === 'number') {
+      type = "number_decimal";
+      processedValue = value.toString();
+    } else if (typeof value === 'boolean') {
+      type = "boolean";
+      processedValue = value.toString();
+    }
+    
+    const metafield = {
+      ownerId: formattedDraftOrderId,
+      namespace: "pricing",
+      key: key,
+      value: processedValue,
+      type: type
+    };
+    
+    console.log(`Creating metafield:`, JSON.stringify(metafield, null, 2));
+    return metafield;
+  });
 
   const mutation = `
     mutation metafieldsSet($input: [MetafieldsSetInput!]!) {
@@ -266,6 +427,7 @@ export async function updateDraftOrderMetafields(
           namespace
           key
           value
+          type
         }
         userErrors {
           field
@@ -276,14 +438,27 @@ export async function updateDraftOrderMetafields(
   `;
   const variables = { input: metafields };
 
-  const response = await axios.post(url, { query: mutation, variables }, { headers });
-  console.log("Update metafields response:", response.data);
+  console.log("Setting metafields with input:", JSON.stringify(variables, null, 2));
 
-  if (!response.data.data || !response.data.data.metafieldsSet) {
-    throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+  try {
+    const response = await axios.post(url, { query: mutation, variables }, { headers });
+    console.log("Update draft order metafields response:", JSON.stringify(response.data, null, 2));
+
+    if (!response.data.data || !response.data.data.metafieldsSet) {
+      throw new Error(JSON.stringify(response.data.errors || "Unknown error"));
+    }
+    
+    const userErrors = response.data.data.metafieldsSet.userErrors;
+    if (userErrors && userErrors.length > 0) {
+      console.error("Errors setting metafields:", userErrors);
+      throw new Error(`Metafield errors: ${JSON.stringify(userErrors)}`);
+    }
+
+    return response.data.data.metafieldsSet;
+  } catch (error) {
+    console.error("Failed to update draft order metafields:", error);
+    throw error;
   }
-  
-  return response.data.data.metafieldsSet;
 }
 
 export async function createOrderGraphQL(pricingData: Record<string, any>): Promise<any> {

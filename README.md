@@ -1,4 +1,86 @@
-# Central Dispatch Price Checker
+# Central Dispatch Scraper
+
+## Setup
+
+Make all the scripts executable first:
+
+```bash
+chmod +x scripts/launch-chrome.sh
+chmod +x scripts/launch-chrome-ubuntu.sh
+chmod +x scripts/check-scheduler.js
+```
+
+## Authentication Process
+
+To authenticate with Central Dispatch, follow these steps:
+
+### Step 1: Launch Chrome with Debugging Enabled
+
+#### macOS
+Run the following command in a terminal:
+
+```bash
+npm run chrome
+```
+
+#### Ubuntu
+For Ubuntu, run:
+
+```bash
+npm run chrome:ubuntu
+```
+
+Or you can execute the script directly:
+
+```bash
+./scripts/launch-chrome-ubuntu.sh
+```
+
+This will launch Chrome with remote debugging enabled on port 9222. **Keep this terminal window open** during the entire authentication process.
+
+### Step 2: Run the Authentication Script
+
+In a separate terminal window, run:
+
+```bash
+npm run auth
+```
+
+This will:
+1. Connect to the Chrome instance launched in Step 1
+2. Navigate to the login page
+3. Enter your credentials (from your .env file)
+4. Guide you through the 2FA verification process
+
+### Step 3: Keep the Session Active (Optional)
+
+To keep your authentication session active, you can run the checker script which will periodically call the API:
+
+```bash
+npm run checker
+```
+
+Or directly:
+```bash
+./scripts/check-scheduler.js
+```
+
+This script will call the `/scrapper/check` endpoint every 30 minutes to ensure your session stays active.
+
+## Environment Variables
+
+Create a `.env` file in the root directory with:
+
+```
+USERNAME=your_username
+PASSWORD=your_password
+```
+
+## Development
+
+- `npm run build` - Build the TypeScript code
+- `npm run dev` - Run the development server
+- `npm run start` - Start the production server
 
 ### How to Deploy
 ---

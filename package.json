@@ -5,7 +5,11 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "auth": "node dist/lib/auth.js",
+    "chrome": "bash scripts/launch-chrome.sh",
+    "chrome:ubuntu": "bash scripts/launch-chrome-ubuntu.sh",
+    "checker": "node scripts/check-scheduler.js"
   },
   "keywords": [],
   "author": "",

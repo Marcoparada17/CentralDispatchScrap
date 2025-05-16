@@ -10,8 +10,8 @@ PROFILE_DIR="$HOME/.config/google-chrome/DebugProfile"
 mkdir -p "$PROFILE_DIR"
 echo "📁 Using Chrome profile at $PROFILE_DIR"
 
-# Launch Chrome with the debugging port
-google-chrome \
+# Launch Chrome with the debugging port and redirect output to /dev/null
+nohup google-chrome \
   --headless \
   --no-sandbox \
   --disable-gpu \
@@ -20,11 +20,11 @@ google-chrome \
   --remote-allow-origins=* \
   --user-data-dir="$PROFILE_DIR" \
   --no-first-run \
-  --no-default-browser-check &
+  --no-default-browser-check > /dev/null 2>&1 &
 
-echo "✅ Chrome launched with debugging port 9222"
-echo "⚠️  Keep this terminal window open while using the auth script"
-echo "⚠️  Press Ctrl+C to close Chrome when you're done"
+# Get the process ID
+CHROME_PID=$!
 
-# Wait for user to terminate with Ctrl+C
-wait 
+echo "✅ Chrome launched with debugging port 9222 (PID: $CHROME_PID)"
+echo "⚠️  Chrome is running in the background"
+echo "⚠️  To stop Chrome, run: pkill -f 'remote-debugging-port=9222'"
